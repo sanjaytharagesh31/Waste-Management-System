@@ -1,0 +1,121 @@
+create database database1;
+use database1;
+
+create table user (
+	user_id varchar(10) not null,
+    u_name varchar(30) not null,
+    u_mobile numeric(15),
+    email_id varchar(100),
+    address varchar(100) not null,
+    area_id varchar(10) not null,
+    occupation varchar(50) not null,
+    gender varchar(10) not null,
+    primary key (user_id)
+);
+
+create table complaint (
+	complaint_id varchar(10) not null,
+    user_id varchar(10) not null,
+    message varchar(100) not null,
+    image longblob,
+    complaint_status varchar(50) not null,
+    complaint_date date not null,
+    complaint_time time not null,
+    complaint_resolved_date date,
+    complaint_resolved_time time,
+    primary key (complaint_id),
+    foreign key (user_id) references user(user_id)
+);
+
+create table area (
+	area_id varchar(10) not null,
+    name varchar(50) not null,
+    latitude varchar(20) not null,
+    longitude varchar(20) not null,
+    primary key (area_id)
+);
+
+create table vehicle (
+	vehicle_id varchar(15) not null,
+    area_id varchar(10) not null,
+    driver_name varchar(20) not null,
+    driver_phone numeric(15),
+    primary key (vehicle_id),
+    foreign key (area_id) references area(area_id)
+);
+
+create table waste_produced (
+	user_id varchar(10) not null,
+    w_date date not null,
+    bio_weight numeric(10,2) not null,
+    non_bio_weight numeric(10,2) not null,
+    primary key (user_id, w_date),
+    foreign key (user_id) references user(user_id)
+);
+
+insert into user values (
+'u101', 'Nikish Kumar', 1234567890, 'nerpu007@gmail.com', '10, Tambaram, Chennai, TamilNadu', 'a201', 'student', 'male');
+insert into user values (
+'u102', 'Sahisnu', 1234568560, 'sahi@gmail.com', '32, Saibaba Colony, Coimbatore, TamilNadu', 'a201', 'student', 'male');
+insert into user values (
+'u103', 'Srivatsa', 1233117890, 'srivatsaooty@gmail.com', '55, garden, Ooty, TamilNadu', 'a202', 'manager', 'male');
+insert into user values (
+'u104', 'Nithin Aakash', 1815632390, 'nithin99@gmail.com', '31, NITT, Tiruchi, TamilNadu', 'a203', 'employee', 'male');
+insert into user values (
+'u105', 'Sanjay Tharagesh', 3214567890, 'sanjay311999@gmail.com', '11, JaiNagar, Coimbatore, TamilNadu', 'a202', 'teacher', 'male');
+insert into user values (
+'u106', 'Sai Harsha', 1234567440, 'saibalsu@yahoo.com', '90, Vadavalli, Coimbatore, TamilNadu', 'a204', 'engineer', 'male');
+insert into user values (
+'u107', 'karan', 3126347890, 'karanasp@yahoo.com', '14, Tambaram, Chennai, TamilNadu', 'a203', 'student', 'male');
+insert into user values (
+'u108', 'Thejas', 3451367890, 'thejastiruppur@gmail.com', '19, Govt Colony, Tiruppur, TamilNadu', 'a205', 'student', 'male');
+insert into user values (
+'u109', 'Anjana', 1978054320, 'anjana@gmail.com', '11, Ettimadai, Coimbatore, TamilNadu', 'a205', 'student', 'female');
+
+select * from user;
+
+insert into area values (
+'a201', 'Mount Kali', '13.0827 N', '80.2707 E');
+insert into area values (
+'a202', 'Jai Nagar', '11.0168 N,', '76.9558 E');
+insert into area values (
+'a203', 'Temple Nagar', '13.0827 N', '80.2707 E');
+insert into area values (
+'a204', 'Baba Street', '13.0827 N', '80.2707 E');
+insert into area values (
+'a205', 'Peons Colony', '9.9252 N', '78.1198 E');
+insert into area values (
+'a206', 'Lakshmi Nagar', '9.9312 N', '76.2673 E');
+insert into area values (
+'a207', 'Manis Nagar', '10.7905 N', '78.7047 E');
+
+select * from area;
+
+insert into vehicle values (
+'TN38I3347', 'a201', 'Kumaresh', 9017429840);
+insert into vehicle values (
+'TN39H6509', 'a202', 'Ramesh', 9017123450);
+insert into vehicle values (
+'TN38G6447', 'a203', 'Pollard', 9019067540);
+insert into vehicle values (
+'TN01F1237', 'a204', 'Sangakara', 9084559840);
+insert into vehicle values (
+'TN38E5347', 'a205', 'Peter', 9019999760);
+insert into vehicle values (
+'TN39D1147', 'a206', 'Bai Barsha', 1233429840);
+insert into vehicle values (
+'TN60C9047', 'a207', 'Raja', 9017132134);
+insert into vehicle values (
+'TN33B2347', 'a205', 'Gopal', 9017444550);
+insert into vehicle values (
+'TN38A6947', 'a203', 'Venkatesh', 9017444443);
+
+select * from vehicle;
+
+show tables;
+
+insert into complaint(complaint_id, user_id, message, image, complaint_status, complaint_date, complaint_time) values (
+'c101', 'u101', 'Garbage not cleaned from the area', '' ,'NOT_RESOLVED', '2019-08-01', '12:35:23');
+
+update complaint set image = LOAD_FILE('D:\DBMS_project\images\one.jpg') where complaint_id='c101';
+select * from complaint;
