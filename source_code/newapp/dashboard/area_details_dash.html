@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<style>
+body {font-family: "Lato", sans-serif;}
+
+.sidebar {
+  height: 100%;
+  width: 180px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  /* margin-left: 180px; //Same as the width of the sidenav */
+  padding: 0px 10px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 10%;
+  width: 30%;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+li {
+    margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <a href="http://localhost:3000/alogin/admin_dash"><i class="fa fa-fw fa-user-circle-o"></i> Home</a>
+  <a href="#services"><i class="fa fa-fw fa-wrench"></i> Services</a>
+  <a href="http://localhost:3000/alogin/#"><i class="fa fa-fw fa-user"></i>Daily update</a>
+  <a href="http://localhost:3000/alogin/#"><i class="fa fa-fw fa-envelope"></i> Complaint</a>
+  <a href="http://localhost:3000/alogin/area_details"><i class="fa fa-fw fa-map"></i> Area Info</a>
+</div>
+
+<div class="main">
+    <ul style="list-style-type:none;">
+        <li><a href="http://localhost:3000/alogin/area_details/add_area"><button type="button" class="btn btn-success btn-lg btn-block">Add Area</button></a></li>
+        <li><a href="http://localhost:3000/alogin/area_details/update_area"><button type="button" class="btn btn-warning btn-lg btn-block">Update Area</button></a></li>
+        <li><a href="http://localhost:3000/alogin/area_details/delete_area"><button type="button" class="btn btn-danger btn-lg btn-block">Delete Area</button></a></li>
+    </ul>
+</div>
+     
+</body>
+</html> 
